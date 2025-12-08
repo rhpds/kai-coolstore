@@ -1,9 +1,14 @@
 package com.redhat.coolstore.service;
 
+import com.enterprise.audit.logging.config.AuditConfiguration;
+import com.enterprise.audit.logging.exception.AuditLoggingException;
+import com.enterprise.audit.logging.service.FileSystemAuditLogger;
 import com.redhat.coolstore.model.CatalogItemEntity;
 import com.redhat.coolstore.model.Product;
 import com.redhat.coolstore.utils.Transformers;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.List;
@@ -32,5 +37,25 @@ public class ProductService {
         // Return the entity
         return Transformers.toProduct(entity);
     }
+
+    private FileSystemAuditLogger auditLogger;
+
+    @PostConstruct
+    public void init() throws AuditLoggingException {
+      // Initialize audit logger
+      AuditConfiguration config = new AuditConfiguration();
+      config.setLogDirectory("./device-inventory-audit-logs");
+      config.setAutoCreateDirectory(true);
+      auditLogger = new FileSystemAuditLogger(config);
+
+    }
+
+    @PreDestroy
+    public void cleanup() throws AuditLoggingException {
+      if (auditLogger != null) {
+          auditLogger.close();
+      }
+    }
+
 
 }

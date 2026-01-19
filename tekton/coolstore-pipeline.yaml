@@ -1,0 +1,38 @@
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: coolstore-pipeline
+spec:
+  params:
+    - name: GIT_REPO
+      type: string
+      default: "https://github.com/dbrugger946/kai-coolstore.git"
+    - name: BRANCH
+      type: string
+      default: "quarkus"
+  workspaces:
+    - name: app-build
+    - name: maven-settings
+
+  tasks:
+    - name: fetch-repository
+      taskRef:
+        resolver: cluster 
+        params:
+          - name: kind
+            value: task 
+          - name: name
+            value: git-clone 
+          - name: 
+            value: openshift-pipelines
+      params: 
+        - name: URL
+          value: $(params.GIT_REPO)
+        - name: REVISION 
+          value: $(params.BRANCH)
+        - name: DELETE_EXISTING 
+          value: "true" 
+      workspaces: 
+        - name: output 
+          workspace: app-build
+

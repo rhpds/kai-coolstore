@@ -37,14 +37,8 @@ spec:
           workspace: app-build
     - name: maven-build
       taskRef:
-          resolver: cluster 
-          params:
-            - name: kind
-              value: task 
-            - name: name
-              value: maven-1-21-0
-            - name: namespace
-              value: openshift-pipelines
+        name: maven
+        kind: Task 
       params:
         - name: MAVEN_IMAGE
           value: 'registry.access.redhat.com/ubi9/openjdk-21:1.20'

@@ -42,7 +42,7 @@ spec:
             - name: kind
               value: task 
             - name: name
-              value: maven 
+              value: maven-1-21-0
             - name: namespace
               value: openshift-pipelines
       params:

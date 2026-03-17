@@ -1,8 +1,26 @@
 schemaVersion: 2.2.0
 metadata:
   name: dls-devspaces
+variables:
+  GIT_ORG: rhpds
+  GIT_REPO: kai-coolstore
+  GITEA_HOST: github.com
+
 components:
+  - name: che-code
+    plugin:
+      id: che-incubator/che-code/latest
+
   - name: kai-dev-container
     container:
       image: quay.io/dbrugger946/dls-devspaces:latest
       memoryLimit: 8Gi
+      mountSources: true
+
+projects:
+  - name: "{{ GIT_REPO }}"
+    git:
+      remotes:
+        origin: "http://{{ GITEA_HOST }}/{{ GIT_ORG }}/{{ GIT_REPO }}"
+      checkoutFrom:
+        revision: main

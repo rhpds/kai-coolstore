@@ -10,6 +10,7 @@ components:
   - name: che-code
     plugin:
       id: che-incubator/che-code/latest
+      registryUrl: 'http://che-gateway.openshift-devspaces.svc.cluster.local:8080/plugin-registry/v3'
 
   - name: kai-dev-container
     container:

@@ -8,6 +8,8 @@ components:
       image: quay.io/dbrugger946/dls-devspaces:latest
       memoryLimit: 8Gi
       mountSources: true
+      command:
+        - /checode/entrypoint-volume.
       endpoints:
         - name: che-code
           targetPort: 3100

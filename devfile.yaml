@@ -3,7 +3,7 @@ metadata:
   name: dls-devspaces
 
 components:
-  - name: tools
+  - name: kai-dev-container
     container:
       image: quay.io/dbrugger946/dls-devspaces:latest
       memoryLimit: 8Gi
@@ -12,7 +12,7 @@ components:
 commands:
   - id: clone-repo
     exec:
-      component: tools
+      component: kai-dev-container
       commandLine: |
         if [ ! -d "/projects/kai-coolstore" ]; then
           git clone http://${GIT_USERNAME}:${GIT_PASSWORD}@${GITEA_HOST}/${GIT_ORG}/kai-coolstore /projects/kai-coolstore

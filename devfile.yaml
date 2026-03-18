@@ -1,12 +1,6 @@
 schemaVersion: 2.2.0
 metadata:
   name: dls-devspaces
-  attributes:
-    controller.devfile.io/editor: che-incubator/che-code/latest
-variables:
-  GIT_ORG: rhpds
-  GIT_REPO: kai-coolstore
-  GITEA_HOST: github.com
 
 components:
   - name: kai-dev-container
@@ -15,10 +9,16 @@ components:
       memoryLimit: 8Gi
       mountSources: true
 
-projects:
-  - name: "{{ GIT_REPO }}"
-    git:
-      remotes:
-        origin: "http://{{ GITEA_HOST }}/{{ GIT_ORG }}/{{ GIT_REPO }}"
-      checkoutFrom:
-        revision: main
+commands:
+  - id: clone-repo
+    exec:
+      component: kai-dev-container
+      commandLine: |
+        if [ ! -d "/projects/kai-coolstore" ]; then
+          git clone http://${GITEA_HOST}/${GIT_ORG}/kai-coolstore /projects/kai-coolstore
+        fi
+      workingDir: /projects
+
+events:
+  postStart:
+    - clone-repo

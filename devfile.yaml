@@ -29,4 +29,7 @@ events:
 projects:
   - name: kai-coolstore
     git:
-      url: https://github.com/rhpds/kai-coolstore
+      remotes:
+        origin: https://github.com/rhpds/kai-coolstore.git
+      checkoutFrom:
+        revision: main

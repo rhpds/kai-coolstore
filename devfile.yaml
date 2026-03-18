@@ -15,7 +15,7 @@ commands:
       component: kai-dev-container
       commandLine: |
         if [ ! -d "/projects/kai-coolstore" ]; then
-          git clone http://${GITEA_HOST}/${GIT_ORG}/kai-coolstore /projects/kai-coolstore
+          git clone http://${GIT_USERNAME}:${GIT_PASSWORD}@${GITEA_HOST}/${GIT_ORG}/kai-coolstore /projects/kai-coolstore
         fi
       workingDir: /projects
 

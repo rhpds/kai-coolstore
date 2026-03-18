@@ -16,6 +16,7 @@ commands:
       commandLine: |
         git config --global user.email "${GIT_EMAIL}"
         git config --global user.name "${GIT_USERNAME}"
+        git rm -rf kai-coolstore
         if [ ! -d "kai-coolstore" ]; then
           git clone http://$GIT_USERNAME:$GIT_PASSWORD@gitea.$GIT_USERNAME-gitea.svc.cluster.local:3000/$GIT_USERNAME/kai-coolstore
         fi
@@ -27,3 +28,5 @@ events:
 
 projects:
   - name: kai-coolstore
+    git:
+      url: https://github.com/rhpds/kai-coolstore

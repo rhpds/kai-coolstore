@@ -9,11 +9,6 @@ components:
       memoryLimit: 2Gi
       mountSources: true
 
-  - name: mta-extension
-    plugin:
-      id: redhat.mta
-      version: latest
-
 commands:
   - id: configure-git
     exec:

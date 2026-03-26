@@ -6,7 +6,7 @@ components:
   - name: kai-dev-container
     container:
       image: quay.io/dbrugger946/dls-devspaces:latest
-      memoryLimit: 8Gi
+      memoryLimit: 2Gi
       mountSources: true
 
 commands:

@@ -1,0 +1,35 @@
+schemaVersion: 2.2.0
+metadata:
+  name: dls-devspaces
+
+components:
+  - name: kai-dev-container
+    container:
+      image: quay.io/dbrugger946/dls-devspaces:ubi9-latest
+      memoryLimit: 4Gi
+      mountSources: true
+
+# commands:
+#   - id: configure-git
+#     exec:
+#       component: kai-dev-container
+#       commandLine: |
+#         git config --global user.email "${GIT_EMAIL}"
+#         git config --global user.name "${GIT_USERNAME}"
+#         if [ -d "kai-coolstore" ]; then
+#           rm -rf kai-coolstore
+#         fi
+#         git clone http://$GIT_USERNAME:$GIT_PASSWORD@gitea.$GIT_USERNAME-gitea.svc.cluster.local:3000/$GIT_USERNAME/kai-coolstore        
+#       workingDir: /projects
+
+# events:
+#   postStart:
+#     - configure-git
+
+projects:
+  - name: solution-server
+    git:
+      remotes:
+        origin: https://github.com/rhpds/kai-coolstore.git
+      checkoutFrom:
+        revision: module3

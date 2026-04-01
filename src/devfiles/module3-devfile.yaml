@@ -1,6 +1,6 @@
 schemaVersion: 2.2.0
 metadata:
-  name: dls-devspaces
+  name: dls-module-3
 
 components:
   - name: kai-dev-container
@@ -27,7 +27,7 @@ components:
 #     - configure-git
 
 projects:
-  - name: solution-server
+  - name: module3-solution-server
     git:
       remotes:
         origin: https://github.com/rhpds/kai-coolstore.git

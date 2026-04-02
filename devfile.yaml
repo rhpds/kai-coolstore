@@ -19,7 +19,7 @@ commands:
         if [ -d "kai-coolstore" ]; then
           rm -rf kai-coolstore
         fi
-        git clone http://$GIT_USERNAME:$GIT_PASSWORD@gitea.gitea.svc.cluster.local:3000/$GIT_USERNAME/kai-coolstore        
+        git clone http://$GIT_USERNAME:$GIT_PASSWORD@gitea.gitea.svc.cluster.local:3000/$GIT_ORG/kai-coolstore        
       workingDir: /projects
 
 events:

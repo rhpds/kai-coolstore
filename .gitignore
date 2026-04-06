@@ -3,4 +3,12 @@ target
 .classpath
 .idea
 .settings
-.vscode
+
+# Ignore the entire .vscode folder by default
+.vscode/*
+
+# But allow these specific shared configuration files
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json

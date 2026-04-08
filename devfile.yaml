@@ -23,7 +23,7 @@ commands:
       workingDir: /projects
   - id: configure-java
     exec:
-      component: kai-dev-container
+      component: configure-vscode
       commandLine: |
         mkdir -p $HOME/.vscode-oss/User
         cp /projects/kai-coolstore/.vscode/settings.json $HOME/.vscode-oss/User/settings.json
@@ -32,7 +32,7 @@ commands:
 events:
   postStart:
     - configure-git
-    - configure-java
+    - configure-vscode
 
 projects:
   - name: kai-coolstore

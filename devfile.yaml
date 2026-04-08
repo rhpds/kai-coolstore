@@ -21,10 +21,17 @@ commands:
         fi
         git clone http://$GIT_USERNAME:$GIT_PASSWORD@gitea.gitea.svc.cluster.local:3000/$GIT_ORG/kai-coolstore        
       workingDir: /projects
+  - id: configure-java
+    exec:
+      component: kai-dev-container
+      commandLine: |
+        mkdir -p $HOME/.vscode-oss/User && \
+        echo '{"java.server.launchMode":"Standard"}' > $HOME/.vscode-oss/User/settings.json
 
 events:
   postStart:
     - configure-git
+    - configure-java
 
 projects:
   - name: kai-coolstore

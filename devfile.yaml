@@ -29,7 +29,6 @@ commands:
         cp /projects/kai-coolstore/.vscode/settings.json $HOME/.vscode-oss/User/settings.json
         echo "VS Code settings applied from repository"
 
-
 events:
   postStart:
     - configure-git

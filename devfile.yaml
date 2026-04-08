@@ -34,7 +34,7 @@ commands:
 events:
   postStart:
     - configure-git
-    - configure-vscode
+    # - configure-vscode
 
 projects:
   - name: kai-coolstore

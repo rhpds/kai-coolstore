@@ -21,9 +21,9 @@ commands:
         fi
         git clone http://$GIT_USERNAME:$GIT_PASSWORD@gitea.gitea.svc.cluster.local:3000/$GIT_ORG/kai-coolstore        
       workingDir: /projects
-  - id: configure-java
+  - id: configure-vscode
     exec:
-      component: configure-vscode
+      component: kai-dev-container
       commandLine: |
         mkdir -p $HOME/.vscode-oss/User
         cp /projects/kai-coolstore/.vscode/settings.json $HOME/.vscode-oss/User/settings.json

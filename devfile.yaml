@@ -27,7 +27,9 @@ commands:
       commandLine: |
         mkdir -p $HOME/.vscode-oss/User
         cp /projects/kai-coolstore/.vscode/settings.json $HOME/.vscode-oss/User/settings.json
-        echo "VS Code settings applied from repository"
+        pkill -9 -f 'jdtls' 2>/dev/null || true
+        rm -rf $HOME/.cache/jdtls 2>/dev/null || true
+        echo "Java Standard mode configured in both user and workspace settings"
 
 events:
   postStart:

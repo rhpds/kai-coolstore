@@ -32,9 +32,10 @@ commands:
         echo "Java Standard mode configured in both user and workspace settings"
 
 events:
+  preStart:
+    - configure-vscode
   postStart:
     - configure-git
-    - configure-vscode
 
 projects:
   - name: kai-coolstore

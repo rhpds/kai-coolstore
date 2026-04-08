@@ -25,8 +25,10 @@ commands:
     exec:
       component: kai-dev-container
       commandLine: |
-        mkdir -p $HOME/.vscode-oss/User && \
-        echo '{"java.server.launchMode":"Standard"}' > $HOME/.vscode-oss/User/settings.json
+        mkdir -p $HOME/.vscode-oss/User
+        cp /projects/kai-coolstore/.vscode/settings.json $HOME/.vscode-oss/User/settings.json
+        echo "VS Code settings applied from repository"
+
 
 events:
   postStart:

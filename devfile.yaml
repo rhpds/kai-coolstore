@@ -43,3 +43,6 @@ projects:
         origin: https://github.com/rhpds/kai-coolstore.git
       checkoutFrom:
         revision: main
+
+workspace:
+  startTimeout: "600s"

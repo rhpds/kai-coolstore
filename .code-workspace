@@ -1,0 +1,11 @@
+{                                                                                                                                                          
+  "folders": [                                                                                                                                               
+    {                                                                                                                                                      
+      "name": "kai-coolstore",
+      "path": "."             
+    }                                                                                                                                                        
+  ],                                                                                                                                                         
+  "settings": {                                                                                                                                              
+    "java.server.launchMode": "Standard"                                                                                                                     
+  }                                                                                                                                                        
+}

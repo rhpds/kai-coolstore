@@ -15,7 +15,6 @@ commands:
       component: kai-dev-container
       commandLine: |
         mkdir -p /home/user/.vscode-oss/User
-        cp /projects/kai-coolstore/.vscode/settings.json /home/user/.vscode-oss/User/settings.json
         echo '{"folders":[{"name":"kai-coolstore","path":"/projects/kai-coolstore"}],"settings":{"java.server.launchMode":"Standard"}}' > /projects/.code-workspace
         git config --global user.email "${GIT_EMAIL}" || true
         git config --global user.name "${GIT_USERNAME}" || true

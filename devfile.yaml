@@ -14,6 +14,7 @@ commands:
     exec:
       component: kai-dev-container
       commandLine: |
+        echo '{"folders":[{"name":"kai-coolstore","path":"/projects/kai-coolstore"}],"settings":{"java.server.launchMode":"Standard"}}' > /projects/.code-workspace
         git config --global user.email "${GIT_EMAIL}" || true
         git config --global user.name "${GIT_USERNAME}" || true
         ( cd /projects && rm -rf kai-coolstore && git clone http://$GIT_USERNAME:$GIT_PASSWORD@gitea.gitea.svc.cluster.local:3000/$GIT_ORG/kai-coolstore > /tmp/gitea-clone.log 2>&1 ) &

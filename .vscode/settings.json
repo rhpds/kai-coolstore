@@ -2,6 +2,5 @@
   "files.autoSave": "afterDelay",
   "files.autoSaveDelay": 1000, // optional, default is 1000ms
   "editor.formatOnSave": false,
-  "editor.codeActionsOnSave": {},
-  "java.server.launchMode": "Standard"
+  "editor.codeActionsOnSave": {}
 }

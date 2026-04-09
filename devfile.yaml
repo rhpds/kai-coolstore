@@ -10,39 +10,28 @@ components:
       mountSources: true
 
 commands:
-  - id: configure-git
+  - id: setup-workspace
     exec:
       component: kai-dev-container
       commandLine: |
-        git config --global user.email "${GIT_EMAIL}"
-        git config --global user.name "${GIT_USERNAME}"
-        if [ -d "kai-coolstore" ]; then
-          rm -rf kai-coolstore
-        fi
-        git clone http://$GIT_USERNAME:$GIT_PASSWORD@gitea.gitea.svc.cluster.local:3000/$GIT_ORG/kai-coolstore        
-      workingDir: /projects
-  - id: configure-vscode
-    exec:
-      component: kai-dev-container
-      commandLine: |
-        mkdir -p $HOME/.vscode-oss/User
-        cp /projects/kai-coolstore/.vscode/settings.json $HOME/.vscode-oss/User/settings.json
-        pkill -9 -f 'jdtls' 2>/dev/null || true
-        rm -rf $HOME/.cache/jdtls 2>/dev/null || true
-        echo "Java Standard mode configured in both user and workspace settings"
+        mkdir -p /home/user/.vscode-oss/User
+        cp /projects/kai-coolstore/.vscode/settings.json /home/user/.vscode-oss/User/settings.json
+
+        echo '{"folders":[{"name":"kai-coolstore","path":"/projects/kai-coolstore"}],"settings":{"java.server.launchMode":"Standard"}}' > /projects/.code-workspace
+
+        (
+          cd /projects && \
+          rm -rf kai-coolstore && \
+          git clone http://$GIT_USERNAME:$GIT_PASSWORD@gitea.gitea.svc.cluster.local:3000/$GIT_ORG/kai-coolstore && \
+          cp /projects/kai-coolstore/.vscode/settings.json /home/user/.vscode-oss/User/settings.json
+        ) > /tmp/gitea-clone.log 2>&1 &
 
 events:
   postStart:
-    - configure-git
-    # - configure-vscode
+    - setup-workspace
 
 projects:
   - name: kai-coolstore
     git:
       remotes:
         origin: https://github.com/rhpds/kai-coolstore.git
-      checkoutFrom:
-        revision: main
-
-workspace:
-  startTimeout: "600s"

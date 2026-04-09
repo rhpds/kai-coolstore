@@ -5,7 +5,7 @@ metadata:
 components:
   - name: kai-dev-container
     container:
-      image: quay.io/dbrugger946/dls-devspaces:ubi9-latest
+      image: quay.io/treddy08/dls-devspaces:ubi9-latest
       memoryLimit: 4Gi
       mountSources: true
 
@@ -14,16 +14,9 @@ commands:
     exec:
       component: kai-dev-container
       commandLine: |
-        mkdir -p /home/user/.vscode-oss/User
-        echo '{"folders":[{"name":"kai-coolstore","path":"/projects/kai-coolstore"}],"settings":{"java.server.launchMode":"Standard"}}' > /projects/.code-workspace
         git config --global user.email "${GIT_EMAIL}" || true
         git config --global user.name "${GIT_USERNAME}" || true
-        (
-          cd /projects && \
-          rm -rf kai-coolstore && \
-          git clone http://$GIT_USERNAME:$GIT_PASSWORD@gitea.gitea.svc.cluster.local:3000/$GIT_ORG/kai-coolstore && \
-          cp /projects/kai-coolstore/.vscode/settings.json /home/user/.vscode-oss/User/settings.json
-        ) > /tmp/gitea-clone.log 2>&1 &
+        ( cd /projects && rm -rf kai-coolstore && git clone http://$GIT_USERNAME:$GIT_PASSWORD@gitea.gitea.svc.cluster.local:3000/$GIT_ORG/kai-coolstore > /tmp/gitea-clone.log 2>&1 ) &
 
 events:
   postStart:

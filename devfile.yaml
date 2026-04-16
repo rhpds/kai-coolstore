@@ -8,6 +8,12 @@ components:
       image: quay.io/dbrugger946/dls-devspaces:ubi9-latest
       memoryLimit: 4Gi
       mountSources: true
+    attributes:
+      # This ensures the extensions are installed in the VS Code editor
+      vscode-extensions:
+        - redhat.java
+        - redhat.mta-vscode-extension-core
+        - redhat.mta-vscode-extension-java
 
 commands:
   - id: setup-workspace
